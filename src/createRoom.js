@@ -127,6 +127,9 @@ function createRoom(opts) {
         });
         console.error("Failed to create room " + roomId + " " + err);
         let description = _t("Server may be unavailable, overloaded, or you hit a bug.");
+        if (err.msg && err.msg !== ""){
+            description = _t(err.msg)
+        }
         if (err.errcode === "M_UNSUPPORTED_ROOM_VERSION") {
             // Technically not possible with the UI as of April 2019 because there's no
             // options for the user to change this. However, it's not a bad thing to report
